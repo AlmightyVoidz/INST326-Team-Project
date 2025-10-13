@@ -1,0 +1,17 @@
+tokenize_text()
+
+def tokenize_text(text):
+    """Break text into lowercase words.
+    
+    Args:
+        text (str): A string of text.
+        
+    Returns:
+        list: List of lowercase words.
+    """
+    if not isinstance(text, str):
+        raise TypeError("Input must be a string.")
+    
+    text = text.lower()
+    words = text.split()
+    return words
