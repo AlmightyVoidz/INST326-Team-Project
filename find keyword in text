@@ -1,0 +1,16 @@
+find_keyword_in_text()
+
+def find_keyword_in_text(text, keyword):
+    """Check if a keyword appears in a text.
+    
+    Args:
+        text (str): The text to search.
+        keyword (str): The word to find.
+        
+    Returns:
+        bool: True if found, False if not.
+    """
+    if not all(isinstance(x, str) for x in [text, keyword]):
+        raise TypeError("Both text and keyword must be strings.")
+    
+    return keyword.lower() in text.lower()
