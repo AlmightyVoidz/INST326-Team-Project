@@ -104,7 +104,7 @@ def make_snippet(text, keyword):
 import re
 
 def clean_text(text: str) -> str:
-    """Clean a string by removing punctuation and making lowercase."""
+    """This cleans strings by removing punctuation and making it lowercase."""
     if not isinstance(text, str):
         raise TypeError("Text must be a string")
     cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
@@ -113,7 +113,7 @@ def clean_text(text: str) -> str:
 #7
 
 def tokenize(text: str) -> list[str]:
-    """Split text into words."""
+    """ This Splits different texts into words."""
     if not isinstance(text, str):
         raise TypeError("Text must be a string")
     return clean_text(text).split()
@@ -123,7 +123,7 @@ def tokenize(text: str) -> list[str]:
 from collections import Counter
 
 def word_frequency(text: str) -> dict[str, int]:
-    """Count how often each word appears."""
+    """Counts how often each word appears."""
     if not isinstance(text, str):
         raise TypeError("Text must be a string")
     words = tokenize(text)
@@ -148,7 +148,7 @@ def search_documents(query: str, documents: list[str]) -> list[int]:
 #10
 
 def highlight_term(text: str, term: str) -> str:
-    """Highlight a word in text by surrounding it with brackets."""
+    """Highlights a word in text by surrounding it with brackets."""
     if not all(isinstance(i, str) for i in [text, term]):
         raise TypeError("Both inputs must be strings")
     pattern = re.compile(rf'\b{term}\b', re.IGNORECASE)
