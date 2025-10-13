@@ -1,3 +1,5 @@
+#1
+
 import os
 
 def extract_file_metadata(file_path):
@@ -18,6 +20,7 @@ def extract_file_metadata(file_path):
     
     return {"name": file_name, "type": file_type, "size_kb": file_size}
 
+#2
 
 def tokenize_text(text):
     """Break text into lowercase words.
@@ -35,6 +38,7 @@ def tokenize_text(text):
     words = text.split()
     return words
 
+#3
 
 def count_word_frequency(words):
     """Count how many times each word appears.
@@ -56,6 +60,7 @@ def count_word_frequency(words):
             counts[word] = 1
     return counts
 
+#4
 
 def find_keyword_in_text(text, keyword):
     """Check if a keyword appears in a text.
@@ -71,7 +76,7 @@ def find_keyword_in_text(text, keyword):
         raise TypeError("Both text and keyword must be strings.")
     
     return keyword.lower() in text.lower()
-
+#5
 
 def make_snippet(text, keyword):
     """Make a short snippet showing where the keyword appears.
@@ -93,3 +98,58 @@ def make_snippet(text, keyword):
     end = min(len(text), index + len(keyword) + 20)
     snippet = text[start:end]
     return f"...{snippet}..."
+
+#6
+
+import re
+
+def clean_text(text: str) -> str:
+    """Clean a string by removing punctuation and making lowercase."""
+    if not isinstance(text, str):
+        raise TypeError("Text must be a string")
+    cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
+    return cleaned.lower().strip()
+
+#7
+
+def tokenize(text: str) -> list[str]:
+    """Split text into words."""
+    if not isinstance(text, str):
+        raise TypeError("Text must be a string")
+    return clean_text(text).split()
+
+#8
+
+from collections import Counter
+
+def word_frequency(text: str) -> dict[str, int]:
+    """Count how often each word appears."""
+    if not isinstance(text, str):
+        raise TypeError("Text must be a string")
+    words = tokenize(text)
+    return dict(Counter(words))
+
+#9
+
+def search_documents(query: str, documents: list[str]) -> list[int]:
+    """Find which documents contain a given query term."""
+    if not isinstance(query, str):
+        raise TypeError("Query must be a string")
+    if not isinstance(documents, list):
+        raise TypeError("Documents must be a list of strings")
+    
+    query = query.lower()
+    found = []
+    for i, doc in enumerate(documents):
+        if query in clean_text(doc):
+            found.append(i)
+    return found
+
+#10
+
+def highlight_term(text: str, term: str) -> str:
+    """Highlight a word in text by surrounding it with brackets."""
+    if not all(isinstance(i, str) for i in [text, term]):
+        raise TypeError("Both inputs must be strings")
+    pattern = re.compile(rf'\b{term}\b', re.IGNORECASE)
+    return pattern.sub(f'[{term.upper()}]', text)
