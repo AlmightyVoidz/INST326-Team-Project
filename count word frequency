@@ -1,0 +1,21 @@
+count_word_frequency()
+
+def count_word_frequency(words):
+    """Count how many times each word appears.
+    
+    Args:
+        words (list): List of words.
+        
+    Returns:
+        dict: Word counts.
+    """
+    if not isinstance(words, list):
+        raise TypeError("Input must be a list of words.")
+    
+    counts = {}
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
+    return counts
